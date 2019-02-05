@@ -1,0 +1,29 @@
+  $('#packages').on("select2:select", function (e) { 
+           var data = e.params.data.text;
+           if(data=='All'){
+            $("#packages > option").prop("selected","selected");
+            $("#packages").trigger("change");
+           }
+      });
+       $('#packages').on('select2:unselecting', function (e) {
+        values = $(this).val();
+        var index = values.indexOf('all');
+          console.log(index);
+        if (index > -1) {
+            values.splice(index, 1);
+            $(this).val(values).trigger('change');
+        }    
+      });
+      
+      <select id="packages" class="form-control select2-multiple" multiple>
+                                                <optgroup label="Order Status">
+                                                    <option value="all">All</option>
+                                                    <option value="status-success">Success</option>
+                                                    <option value="status-failure">Failure</option>
+                                                </optgroup>
+                                            </select>
+                                            
+                                             $('#packages').select2({
+           placeholder: "Select Package",
+           allowClear: true,
+      });   
